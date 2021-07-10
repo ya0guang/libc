@@ -27,11 +27,12 @@ cfg_if! {
 }
 
 s! {
+    #[derive(Debug)]
     pub struct sigset_t {
         #[cfg(target_pointer_width = "32")]
-        __val: [u32; 32],
+        pub __val: [u32; 32],
         #[cfg(target_pointer_width = "64")]
-        __val: [u64; 16],
+        pub __val: [u64; 16],
     }
 
     pub struct sysinfo {
