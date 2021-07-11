@@ -71,6 +71,7 @@ s! {
         pub ss_size: ::size_t
     }
 
+    #[derive(Debug, Default)]
     pub struct stat {
         pub st_dev: ::dev_t,
         pub st_ino: ::ino_t,

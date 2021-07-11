@@ -30,6 +30,12 @@ pub type in_port_t = u16;
 pub type sighandler_t = ::size_t;
 pub type cc_t = ::c_uchar;
 
+// Added types for fuzzer
+
+// File system
+#[derive(Debug, Copy, Clone)]
+pub struct fd(pub i32);
+
 #[cfg_attr(feature = "extra_traits", derive(Debug))]
 pub enum DIR {}
 impl ::Copy for DIR {}
@@ -60,6 +66,7 @@ s! {
 
     // linux x32 compatibility
     // See https://sourceware.org/bugzilla/show_bug.cgi?id=16437
+    #[derive(Debug)]
     pub struct timespec {
         pub tv_sec: time_t,
         #[cfg(all(target_arch = "x86_64", target_pointer_width = "32"))]
@@ -144,6 +151,7 @@ s! {
         pub iov_len: ::size_t,
     }
 
+    #[derive(Debug)]
     pub struct pollfd {
         pub fd: ::c_int,
         pub events: ::c_short,
