@@ -1,5 +1,7 @@
 //! 64-bit specific definitions for linux-like values
 
+extern crate serde;
+use self::serde::Serialize;
 
 pub type ino_t = u64;
 pub type off_t = i64;
@@ -29,7 +31,7 @@ cfg_if! {
 
 
 s! {
-    #[derive(Debug)]
+    #[derive(Debug, Serialize)]
     pub struct sigset_t {
         #[cfg(target_pointer_width = "32")]
         pub __val: [u32; 32],

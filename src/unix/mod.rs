@@ -3,6 +3,9 @@
 //! More functions and definitions can be found in the more specific modules
 //! according to the platform in question.
 
+extern crate serde;
+use self::serde::Serialize;
+
 pub type c_schar = i8;
 pub type c_uchar = u8;
 pub type c_short = i16;
@@ -47,6 +50,7 @@ impl ::Clone for DIR {
 pub type locale_t = *mut ::c_void;
 
 s! {
+    
     pub struct group {
         pub gr_name: *mut ::c_char,
         pub gr_passwd: *mut ::c_char,
@@ -66,7 +70,8 @@ s! {
 
     // linux x32 compatibility
     // See https://sourceware.org/bugzilla/show_bug.cgi?id=16437
-    #[derive(Debug)]
+
+    #[derive(Debug, Serialize)]
     pub struct timespec {
         pub tv_sec: time_t,
         #[cfg(all(target_arch = "x86_64", target_pointer_width = "32"))]

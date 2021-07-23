@@ -1,5 +1,8 @@
 //! x86_64-specific definitions for 64-bit linux-like values
 
+extern crate serde;
+use self::serde::Serialize;
+
 pub type c_char = i8;
 pub type wchar_t = i32;
 pub type nlink_t = u64;
@@ -71,7 +74,7 @@ s! {
         pub ss_size: ::size_t
     }
 
-    #[derive(Debug, Default)]
+    #[derive(Debug, Serialize, Default)]
     pub struct stat {
         pub st_dev: ::dev_t,
         pub st_ino: ::ino_t,

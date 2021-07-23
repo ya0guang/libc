@@ -17,6 +17,7 @@ Raw FFI bindings to platform libraries like libc.
 
 [dependencies]
 rustc-std-workspace-core = { version = "1.0.0", optional = true }
+serde = { version = "1.0", features = ["derive"] }
 
 [features]
 default = ["std"]
